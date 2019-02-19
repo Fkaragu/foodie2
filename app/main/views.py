@@ -10,3 +10,11 @@ def index():
     '''
     title = 'Welcome to the foodie app'
     return render_template("index.html")
+
+@main.route('/options')
+def options():
+    '''
+    View root page function that returns the index page and its data
+    '''
+    title = 'Welcome to the foodie app'
+    return render_template("search.html")
