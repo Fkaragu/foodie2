@@ -1,7 +1,12 @@
-from flask import render_template, request, redirect, url_for,abort
+from flask import render_template,request,redirect,url_for
 from . import main
-from .. import db
+from ..models import User
 
+# Views
 @main.route('/')
 def index():
-    return '<h1> Hello World </h1>'
+    '''
+    View root page function that returns the index page and its data
+    '''
+    title = 'Welcome to the foodie app'
+    return render_template("index.html")
