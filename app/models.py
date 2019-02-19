@@ -18,8 +18,7 @@ class User(UserMixin,db.Model):
     hash_pass = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True, index = True)
 
-    pitches = db.relationship('BLOG',backref='user',lazy='dynamic')
-
+  
     @property
     def password(self):
         raise AttributeError("You cannot read password attribute")
