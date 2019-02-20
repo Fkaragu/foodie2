@@ -44,7 +44,6 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     pitch_content = db.Column(db.String())
-    pitch_category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_pitch(self):
@@ -60,12 +59,6 @@ class Pitch(db.Model):
     def get_all_pitches(cls):
         pitches = Pitch.query.order_by('-id').all()
         return pitches
-
-    @classmethod
-    def get_category(cls,cat):
-        category = Pitch.query.filter_by(pitch_category=cat).order_by('-id').all()
-        return category
-
 
 class Comment(db.Model):
     __tablename__='comments'

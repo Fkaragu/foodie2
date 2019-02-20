@@ -7,6 +7,5 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Post Comment')
 
 class PitchFormL(FlaskForm):
-    pitch = TextAreaField('Pitch Comment', validators=[Required()])
-    my_category = SelectField('Category', choices=[('PickupLine','PickupLine')])
+    pitch = TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Submit')

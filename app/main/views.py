@@ -25,12 +25,12 @@ def Pickupline():
         pitch = pitch_form.pitch.data
         cat = pitch_form.my_category.data
 
-        new_pitch = Pitch(pitch_content=pitch, pitch_category = cat, user = current_user)
+        new_pitch = Pitch(pitch_content=pitch, user = current_user)
         new_pitch.save_pitch()
 
         #return redirect(url_for('index.html'))
 
-    all_pitches = Pitch.get_category('PickupLine')
+    all_pitches = Pitch.get_all_pitches()
 
     title = 'Pickupline Pitch'
 

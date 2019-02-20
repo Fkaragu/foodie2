@@ -9,18 +9,18 @@
 
 {% block content %}
 
-<div class="row fmtxt">
+<div class="row">
 
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-5 brd">
-    <br>
-    {{wtf.quick_form(pitch_form)}}
-    <br>
+  <div class="col-md-8">
+
   </div>
 
-  <div class="col-md-6">
-    {{macro.displayPitches(pitches)}}
+  <div class="col-md-4">
+  <br>
+  {{wtf.quick_form(pitch_form)}}
+  <br>
+
+  {{macro.displayPitches(pitches)}}
   </div>
 </div>
 
