@@ -3,18 +3,23 @@
 <hr>
 <div class="comment">
   <p>
-    <strong>
-      <p>Anonymous</p>
-    </strong>
+    <a href="/user/{{comment.user.username}}&{{comment.user.id}}">{{comment.user.username|capitalize}}</a>
   </p>
-  <p>{{comment.c_content}}</p>
-  <strong>
-    <p>{{comment.c_com_posted_on}}</p>
-  </strong>
-  <ul class="list-inline">
-    <li class="list-inline-item">
-      <a href="/comments/{{pitch.id}}">Add Comment</a>
-    </li>
-  </ul>
+  <p>{{comment.comment_content}}</p>
 </div>
 {% endfor %} {% endmacro %}
+
+{% macro displayPitches(my_pitches) %}
+{% for pitch in my_pitches %}
+<div class="col-md-12 fmtxt">
+
+  <p>{{pitch.pitch_content}}</p>
+  <ul class="list-inline">
+    <li class="list-inline-item">
+      <a href="/pitch/{{pitch.id}}">Add Comment</a>
+    </li>
+  </ul>
+  <hr>
+</div>
+{% endfor %}
+{% endmacro %}

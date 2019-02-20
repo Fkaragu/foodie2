@@ -36,18 +36,47 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+
+    id = db.Column(db.Integer,primary_key = True)
+    pitch_content = db.Column(db.String())
+    pitch_category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_pitch(cls,id):
+        pitches = Pitch.query.filter_by(id=id).all()
+        return pitches
+
+    @classmethod
+    def get_all_pitches(cls):
+        pitches = Pitch.query.order_by('-id').all()
+        return pitches
+
+    @classmethod
+    def get_category(cls,cat):
+        category = Pitch.query.filter_by(pitch_category=cat).order_by('-id').all()
+        return category
+
+
 class Comment(db.Model):
     __tablename__='comments'
 
     id = db.Column(db.Integer,primary_key=True)
-    c_content = db.Column(db.String())
-    c_com_posted_on =  db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
+    comment_content = db.Column(db.String())
+    pitch_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_all_blogs(cls):
-        comments = Comment.query.order_by('-id').all()
+    def get_comments(cls,id):
+        comments = Comment.query.filter_by(pitch_id=id).all()
         return comments

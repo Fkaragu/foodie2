@@ -1,7 +1,9 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..models import User,Comment
-from .forms import CommentForm
+from ..models import User,Comment,Pitch
+from .forms import CommentForm,PitchFormL
+from datetime import datetime
+
 
 # Views
 @main.route('/')
@@ -12,12 +14,30 @@ def index():
     title = 'Welcome to the foodie app'
     return render_template("index.html")
 
-@main.route('/options')
-def options():
-    '''
-    View root page function that returns the index page and its data
-    '''
+@main.route('/Pickupline',methods = ['GET', 'POST'])
+def Pickupline():
 
+    pitch_form = PitchFormL()
+
+    if pitch_form.validate_on_submit():
+        pitch = pitch_form.pitch.data
+        cat = pitch_form.my_category.data
+
+        new_pitch = Pitch(pitch_content=pitch, pitch_category = cat, user = current_user)
+        new_pitch.save_pitch()
+
+        #return redirect(url_for('index.html'))
+
+    all_pitches = Pitch.get_category('PickupLine')
+
+    title = 'Pickupline Pitch'
+
+    return render_template("Pickupline.html", pitch_form = pitch_form, pitches = all_pitches)
+
+@main.route('/pitch/<int:id>',methods = ['GET','POST'])
+def pitch(id):
+
+    my_pitch = Pitch.query.get(id)
     comment_form = CommentForm()
 
     if id is None:
@@ -25,11 +45,12 @@ def options():
 
     if comment_form.validate_on_submit():
         comment_data = comment_form.comment.data
-        new_comment = Comment(c_content = comment_data, c_com_posted_on = datetime.now())
+        new_comment = Comment(comment_content = comment_data, pitch_id = id, user = current_user)
         new_comment.save_comment()
 
-        return redirect(url_for('main.search',id=id))
+        return redirect(url_for('main.pitch',id=id))
 
-    #all_comments = Comment.get_all_blogs()
+    all_comments = Comment.get_comments(id)
 
-    return render_template('search.html',comment_form = comment_form, comments = all_comments)
+    title = 'Comment Section'
+    return render_template('pitch.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)
