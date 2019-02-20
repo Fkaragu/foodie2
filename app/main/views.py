@@ -14,7 +14,7 @@ def index():
     return render_template("index.html")
 
 @main.route('/search')
-def index():
+def search():
     '''
     View root page function that returns the index page and its data
     '''
