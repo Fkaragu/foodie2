@@ -18,6 +18,9 @@ class User(UserMixin,db.Model):
     hash_pass = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True, index = True)
 
+    pitches = db.relationship('Pitch',backref='user',lazy='dynamic')
+    comments = db.relationship('Comment',backref='user',lazy='dynamic')
+
 
     @property
     def password(self):
