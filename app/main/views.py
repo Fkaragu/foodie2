@@ -16,14 +16,13 @@ def index():
     title = 'Welcome to the foodie app'
     return render_template("index.html")
 
-@main.route('/Pickupline',methods = ['GET', 'POST'])
+@main.route('/options',methods = ['GET', 'POST'])
 def Pickupline():
 
     pitch_form = PitchFormL()
 
     if pitch_form.validate_on_submit():
         pitch = pitch_form.pitch.data
-        cat = pitch_form.my_category.data
 
         new_pitch = Pitch(pitch_content=pitch, user = current_user)
         new_pitch.save_pitch()
@@ -34,7 +33,7 @@ def Pickupline():
 
     title = 'Pickupline Pitch'
 
-    return render_template("Pickupline.html", pitch_form = pitch_form, pitches = all_pitches)
+    return render_template("allfoods.html", pitch_form = pitch_form, pitches = all_pitches)
 
 @main.route('/pitch/<int:id>',methods = ['GET','POST'])
 def pitch(id):
