@@ -1,11 +1,9 @@
 from . import main
 from datetime import datetime
-from ..models import User,Comment,Pitch
-from .forms import CommentForm,PitchFormL
+from ..models import User,Comment,Intcom
+from .forms import CommentForm,IntFormL
 from flask_login import login_required, current_user
 from flask import render_template,request,redirect,url_for
-
-
 
 # Views
 @main.route('/')
@@ -13,32 +11,30 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-    title = 'Welcome to the foodie app'
+
     return render_template("index.html")
 
 @main.route('/options',methods = ['GET', 'POST'])
-def Pickupline():
+@login_required
+def options():
 
-    pitch_form = PitchFormL()
+    intial_form = IntFormL()
 
-    if pitch_form.validate_on_submit():
-        pitch = pitch_form.pitch.data
+    if intial_form.validate_on_submit():
 
-        new_pitch = Pitch(pitch_content=pitch, user = current_user)
-        new_pitch.save_pitch()
+        comm = intial_form.comm.data
+        new_incomm = Intcom(pitch_content=comm, user = current_user)
+        new_incomm.save_comm()
 
-        #return redirect(url_for('index.html'))
+        return redirect(url_for('main.options'))
 
-    all_pitches = Pitch.get_all_pitches()
+    all_int_comms = Intcom.get_all_pitches()
+    return render_template("allfoods.html", intial_form = intial_form, allcom = all_int_comms)
 
-    title = 'Pickupline Pitch'
-
-    return render_template("allfoods.html", pitch_form = pitch_form, pitches = all_pitches)
-
-@main.route('/pitch/<int:id>',methods = ['GET','POST'])
+@main.route('/reply/<int:id>',methods = ['GET','POST'])
 def pitch(id):
 
-    my_pitch = Pitch.query.get(id)
+    my_pitch = Intcom.query.get(id)
     comment_form = CommentForm()
 
     if id is None:
@@ -54,4 +50,4 @@ def pitch(id):
     all_comments = Comment.get_comments(id)
 
     title = 'Comment Section'
-    return render_template('pitch.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)
+    return render_template('comm.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)

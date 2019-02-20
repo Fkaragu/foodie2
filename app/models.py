@@ -18,7 +18,7 @@ class User(UserMixin,db.Model):
     hash_pass = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True, index = True)
 
-    pitches = db.relationship('Pitch',backref='user',lazy='dynamic')
+    pitches = db.relationship('Intcom',backref='user',lazy='dynamic')
     comments = db.relationship('Comment',backref='user',lazy='dynamic')
 
 
@@ -39,25 +39,25 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-class Pitch(db.Model):
+class Intcom(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer,primary_key = True)
     pitch_content = db.Column(db.String())
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    def save_pitch(self):
+    def save_comm(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
     def get_pitch(cls,id):
-        pitches = Pitch.query.filter_by(id=id).all()
+        pitches = Intcom.query.filter_by(id=id).all()
         return pitches
 
     @classmethod
     def get_all_pitches(cls):
-        pitches = Pitch.query.order_by('-id').all()
+        pitches = Intcom.query.order_by('-id').all()
         return pitches
 
 class Comment(db.Model):

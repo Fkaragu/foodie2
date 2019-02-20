@@ -6,6 +6,6 @@ class CommentForm(FlaskForm):
     comment = TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Post Comment')
 
-class PitchFormL(FlaskForm):
-    pitch = TextAreaField('Comment', validators=[Required()])
+class IntFormL(FlaskForm):
+    comm = TextAreaField('Feedback', validators=[Required()])
     submit = SubmitField('Submit')
