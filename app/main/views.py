@@ -1,8 +1,10 @@
-from flask import render_template,request,redirect,url_for
 from . import main
+from datetime import datetime
 from ..models import User,Comment,Pitch
 from .forms import CommentForm,PitchFormL
-from datetime import datetime
+from flask_login import login_required, current_user
+from flask import render_template,request,redirect,url_for
+
 
 
 # Views
