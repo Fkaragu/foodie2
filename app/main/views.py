@@ -17,5 +17,19 @@ def options():
     '''
     View root page function that returns the index page and its data
     '''
+
     comment_form = CommentForm()
-    return render_template("search.html", comment_form = comment_form)
+
+    if id is None:
+        abort(404)
+
+    if comment_form.validate_on_submit():
+        comment_data = comment_form.comment.data
+        new_comment = Comment(c_content = comment_data, c_blog_id = id, c_com_posted_on = datetime.now())
+        new_comment.save_comment()
+
+        return redirect(url_for('main.pitch',id=id))
+
+    all_comments = Comment.get_comments(id)
+
+    return render_template('comment.html',comment_form = comment_form, comments = all_comments)
