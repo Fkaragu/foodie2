@@ -41,7 +41,6 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     c_content = db.Column(db.String())
-    c_blog_id = db.Column(db.Integer)
     c_com_posted_on =  db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
 
     def save_comment(self):
@@ -49,6 +48,6 @@ class Comment(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_comments(cls,id):
-        comments = Comment.query.filter_by(c_blog_id=id).all()
+    def get_all_blogs(cls):
+        comments = Comment.query.order_by('-id').all()
         return comments

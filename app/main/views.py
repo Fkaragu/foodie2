@@ -1,6 +1,6 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from ..models import User
+from ..models import User,Comment
 from .forms import CommentForm
 
 # Views
@@ -25,11 +25,11 @@ def options():
 
     if comment_form.validate_on_submit():
         comment_data = comment_form.comment.data
-        new_comment = Comment(c_content = comment_data, c_blog_id = id, c_com_posted_on = datetime.now())
+        new_comment = Comment(c_content = comment_data, c_com_posted_on = datetime.now())
         new_comment.save_comment()
 
-        return redirect(url_for('main.pitch',id=id))
+        return redirect(url_for('main.search',id=id))
 
-    all_comments = Comment.get_comments(id)
+    #all_comments = Comment.get_all_blogs()
 
-    return render_template('comment.html',comment_form = comment_form, comments = all_comments)
+    return render_template('search.html',comment_form = comment_form, comments = all_comments)
