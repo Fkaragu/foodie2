@@ -18,7 +18,7 @@ class User(UserMixin,db.Model):
     hash_pass = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True, index = True)
 
-    pitches = db.relationship('Intcom',backref='user',lazy='dynamic')
+    feedback = db.relationship('Intcom',backref='user',lazy='dynamic')
     comments = db.relationship('Comment',backref='user',lazy='dynamic')
 
 
@@ -40,10 +40,10 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
 
 class Intcom(db.Model):
-    __tablename__ = 'pitches'
+    __tablename__ = 'feedback'
 
     id = db.Column(db.Integer,primary_key = True)
-    pitch_content = db.Column(db.String())
+    feed_content = db.Column(db.String())
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_comm(self):
@@ -51,14 +51,14 @@ class Intcom(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_pitch(cls,id):
-        pitches = Intcom.query.filter_by(id=id).all()
-        return pitches
+    def get_comms(cls,id):
+        data = Intcom.query.filter_by(id=id).all()
+        return data
 
     @classmethod
-    def get_all_pitches(cls):
-        pitches = Intcom.query.order_by('-id').all()
-        return pitches
+    def get_all_comms(cls):
+        data = Intcom.query.order_by('-id').all()
+        return data
 
 class Comment(db.Model):
     __tablename__='comments'

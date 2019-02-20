@@ -23,12 +23,12 @@ def options():
     if intial_form.validate_on_submit():
 
         comm = intial_form.comm.data
-        new_incomm = Intcom(pitch_content=comm, user = current_user)
+        new_incomm = Intcom(feed_content=comm, user = current_user)
         new_incomm.save_comm()
 
         return redirect(url_for('main.options'))
 
-    all_int_comms = Intcom.get_all_pitches()
+    all_int_comms = Intcom.get_all_comms()
     return render_template("allfoods.html", intial_form = intial_form, allcom = all_int_comms)
 
 @main.route('/reply/<int:id>',methods = ['GET','POST'])
