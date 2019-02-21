@@ -1,0 +1,14 @@
+{%extends "base.html"%}
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/error.css')}}">
+{% endblock %}
+
+{%block content%}
+<div class= "container">
+    <h1>This is an error page,<span><a href="/home">go back</a></span></h1>
+
+</div>
+{%endblock%}

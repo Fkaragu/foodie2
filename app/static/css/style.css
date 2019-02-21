@@ -4,10 +4,8 @@ body{
   margin: 0;
   font: 400 15px/1.8 "Lato";
   font-style: sans-serif;
-  color: #777; 
+  color: #777;
 }
-
-
 
 .bgimg-1,.bgimg-2, .bgimg-3 {
   position: relative;
@@ -17,7 +15,7 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
  }
- 
+
   .bgimg-1{
       background-image:url("http://files.vividscreen.info/soft/046792795361be30b349c70bf44eeeca/Italian-Pasta-Recipe-1920x1200.jpg");
       min-height: 1000px;
@@ -38,7 +36,7 @@ body{
       padding: 14px 28px;
       font-size: 16px;
       cursor: pointer;
-      
+
      }
 
 .caption {
@@ -89,10 +87,10 @@ h3{
   font: 30px "Lato";
   font-style: sans-serif;
   color: black;
-  
+
 }
 p{
-  color: white; 
+  color: white;
   font-size: 25px ;
   font-style: sans-serif;
 
@@ -109,7 +107,7 @@ p{
 }
 
 #blog-topics{
-  color: white; 
+  color: white;
   font-size: 20px ;
   background-color:#F21B3F;
 }

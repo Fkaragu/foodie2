@@ -2,24 +2,37 @@
 
 {% block styles%}
     {{ super() }}
-
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 {% endblock %}
+
 <!-- Content block -->
 {% block content %}
 <div class="bgimg-1">
-    <div class="caption1">
-      <span class="border">Introducing the Foodie...learders in food and beverages </span><br>
-      <span class="border">We bring together recipes from all over the web- making your life easier.</span><br>
-      <a  href='/auth/login'><button class="btn-lg">Get Started</button></a>
+  <div class="loginbox" id="blog-header">
+      <h1>Got taste?</h1><br><br>
+
+      <p>Eat right.</p>
+      <p>Love yourself.</p>
+
+      <p>_______________________</p>
+
+      <p>Happiness starts with healthy food</p>
+      <button class="btn btn-danger">get started today</button>
+
+
+    </div>
 </div>
-  </div>
-  <div class="blog-summary">
-  <h3>Why Foodie ?</h3>
-  <p>Foodie shows a variety of foods associated to a specific product and ingredient required to accomplish the meal by 
-   understanding the recipe-ingredients,diets,allergies,nutrition,taste,
-  techniques and more.We can connect  users with the best recipes available for their unique food preference</p>
-  
+
+<div class="blog-summary" id="blog-topics">
+  <h3>From the most popular food blogs and tasty recipe websites around, users will have the benefit of our ever expanding recipe index:</h3>
+<ul id="otis" >
+    <li>Serious Eats</li>
+    <li>Taste of home</li>
+    <li>I adore food</li>
+</ul>
+
+
 </div>
 
   <div class="bgimg-2">
@@ -28,50 +41,10 @@
     </div>
   </div>
 
-
-  <div class="blog-summary" id="blog-topics">
-    <h3>From the most popular food blogs and tasty recipe websites around, users will have the benefit of our ever expanding recipe index:</h3>
-  <ul id="otis" >
-      <li>Serious Eats</li>
-      <li>Taste of home</li>
-      <li>I adore food</li>
-  </ul>
-
-
-  </div>
-  <div class="bgimg-3">
-    <div class="caption">
-      <span class="border">Potential application for foodie app</span>
-    </div>
-  </div>
-  <div class="blog-summary">
-    <h3>Applications as to why foodie is essential</h3>
-    <ul id="otis">
-      <li>WEIGHT LOSS /TRACKING</li>
-      <li>COOKING AND MEAL PLANNING</li>
-      <li>SHOPPING LIST</li>
-      <li>ALLERGY</li>
-
-  </ul>
-</div>
-<div class="bgimg-1">
-    <div class="caption1">
-    <span class="border">Check out some of our Popular Recipes</span>
-    <span><ul id="otis">
-  <li>Pressure Cooked Chicken Thighs</li>
-  <li> Easy Cauliflower Recipes</li>
-  <li>  Boneless Chicken Thighs Crock Pot</li>
-  <li>  Chicken And Rice Bake Without Soup</li>
-    <li> Iceberg Lettuce Salad</li>
-   <li>  Cocktail Sausages</li>
-   <li>  Coffee Drinks With Grand Marnier</li>
-  </ul> </span>
-       </div>
-  </div>
-<section>
+  <section>
   <h1>Check out some of our Popular Recipes </h1>
   <!-- <h3>Hover over the circle below</h3>-->
-  
+
 </section>
 <div class="footer">
   <div id="button"></div>
@@ -79,7 +52,7 @@
 <div id="cont">
 <div class="footer_center">
 	   <h3>Foodie 2019</h3>
-     
+
 </div>
 </div>
 </div>

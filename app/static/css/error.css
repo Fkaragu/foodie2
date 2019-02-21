@@ -1,0 +1,15 @@
+body{
+    background-image: url("http://assets3.thrillist.com/v1/image/1525918/size/tl-horizontal_main_2x/13-awful-cooking-mistakes-you-need-to-avoid");
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+
+}
+h1{
+    font-size: 40px;
+    color: red;
+}
